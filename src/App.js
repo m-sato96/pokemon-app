@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Card from "./components/Card/Card";
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
@@ -25,16 +26,15 @@ function App() {
   return (
     <div className="App">
       {loading ? (
-        <p>読み込み中...</p>
+        <p className="loading">Loading...</p>
       ) : (
         <div>
-          <h1>Pokemon List</h1>
-          {pokemonData.map((pokemon) => (
-            <div key={pokemon.id}>
-              <h2>{pokemon.name}</h2>
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-            </div>
-          ))}
+          <h1>Pokémon Pictorial Book</h1>
+          <div className="card_wrap">
+            {pokemonData.map((pokemon) => (
+              <Card key={pokemon.id} pokemon={pokemon}></Card>
+            ))}
+          </div>
         </div>
       )}
     </div>
